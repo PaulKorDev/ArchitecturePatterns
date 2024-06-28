@@ -1,4 +1,4 @@
-# Infrastructure
+# Architecture
 Custom design patterns
 
 ## Content
