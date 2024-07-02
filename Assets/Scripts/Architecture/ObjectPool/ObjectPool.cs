@@ -36,33 +36,7 @@ namespace Assets.Scripts.Architecture.ObjectPool
             CreatePool(precount);
         }
 
-        private void CheckPoolLimit(int currentPoolLimit)
-        {
-            int ObjectsInPoolCount = CountAllObjects();
-            if (ObjectsInPoolCount < currentPoolLimit)
-                AutoExpand = true;
-            else if (ObjectsInPoolCount >= currentPoolLimit)
-                AutoExpand = false;
-            if (currentPoolLimit <= 0) //0 OR less mean that pool hasn't limit
-                AutoExpand = true;
-        }
 
-        private void CreatePool(int count)
-        {
-            for (int i = 0; i < count; i++)
-            {
-                ReturnObject(CreateObject());
-            }
-        }
-
-        private T CreateObject(bool isActiveByDefault = false)
-        {
-            T createdObject = _factory();
-            _getEffect(createdObject);
-            _activeObjects.Add(createdObject);
-            return createdObject;
-
-        }
 
         public T GetObject()
         {
@@ -118,6 +92,33 @@ namespace Assets.Scripts.Architecture.ObjectPool
         public int CountAllObjects()
         {
             return CountActiveObjects() + CountFreeObjects();
+        }
+        private void CreatePool(int count)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                ReturnObject(CreateObject());
+            }
+        }
+        private void CheckPoolLimit(int currentPoolLimit)
+        {
+            int ObjectsInPoolCount = CountAllObjects();
+            if (ObjectsInPoolCount < currentPoolLimit)
+                AutoExpand = true;
+            else if (ObjectsInPoolCount >= currentPoolLimit)
+                AutoExpand = false;
+            if (currentPoolLimit <= 0) //0 OR less mean that pool hasn't limit (infinity)
+                AutoExpand = true;
+        }
+
+        private T CreateObject(bool isActiveByDefault = false)
+        {
+            //TODO: if object creating in CreatePool method => will not call getEffect, because getEffect can be expensive.
+            T createdObject = _factory();
+            _getEffect(createdObject);
+            _activeObjects.Add(createdObject);
+            return createdObject;
+
         }
     }
 }
