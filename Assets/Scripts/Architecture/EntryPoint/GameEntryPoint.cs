@@ -59,8 +59,8 @@ namespace Assets.Scripts.Architecture.EntryPoint
         //Loading screen it's pre-first screen, usualy with logo or loading progress bar
         private void CreateLoadingScreen()
         {
-            var prefabUIRoot = Resources.Load<UILoadingScreenView>("UILoadingScreen.prefab");
-            _uiLoadingScreen = GameObject.Instantiate(prefabUIRoot);
+            var prefabUIRoot = Resources.Load<GameObject>("UILoadingScreen");
+            _uiLoadingScreen = GameObject.Instantiate(prefabUIRoot).GetComponent<UILoadingScreenView>();
             GameObject.DontDestroyOnLoad(_uiLoadingScreen.gameObject);
         }
 
