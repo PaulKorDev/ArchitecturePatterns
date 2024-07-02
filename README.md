@@ -16,7 +16,7 @@ Also in this method, after configuring the application, an instance of the game 
 The game then checks which scene should load first. The "RunGame" method loads the specified scene regardless of which scene the game is launched in the Unity editor. If you started from the plugins scene, "RunGame" will not load your game.
 
 ## Service Locator
-### How it work?
+### How it works?
 Before using the service, you must register it in the Service Locator. You can do this from anywhere in the code, if your service exists.  But it is recommended to do it in one place, like Bootstrap. And you can get registered services in any client. This is bad for encapsulation, but good for convenience. I use Service Locator for my own small projects. 
 
 Most importantly, do not forget to unregistration of the service if you no longer use it. For example, if you need to register concrete services for a concrete scene, you can create a monobehaviour script in which you will register all services at startup for the current scene and unregister them in the onDestroy method, which will start when switching the scene.
@@ -34,3 +34,8 @@ I tried to make my ObjectPool universal, so it has many functions. You can set p
 To create an object, PoolObject receives a FactoryMethod from the constructor. The PoolObject also receives ReturnEffect and GetEffect methods, because sometimes you may need more functionality than just SetActive, for example, initialize the object just before receiving it.
 ### Example
 In the “ExampleObjectPool” folder you can see how I created concrete object pool for conrete object. On the scene with the same name you can test my ObjectPool, creating objects with click.
+
+## Reactive Property
+I copied this code from somewhere, but it's better to use UniRx.
+### How it works?
+Create variable with type of reactive class and add listener for created variable.
