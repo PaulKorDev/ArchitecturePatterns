@@ -25,4 +25,12 @@ Most importantly, do not forget to unregistration of the service if you no longe
 ### How it works?
 Before instantiating a state machine, you need to create concrete states. Your concrete states must be inherited from a concrete abstract base state. All your states must contain an Entry method and inherit from IService. If you need to use Update or FixedUpdate, your base state must inherit from ILogicState and IPhysicState respectively. 
 ### Example
-In the “ExampleStateMachine” folder you can see what classes were created and their hierarchy. On the stage of the same name you can test my StateMachine.
+In the “ExampleStateMachine” folder you can see what classes were created and their hierarchy. On the scene with the same name you can test my StateMachine.
+
+## Object Pool
+### What it can?
+I tried to make my ObjectPool universal, so it has many functions. You can set pool limits, set the AutoExpand flag, get lists and the count of active, free or all objects.
+### Additional flexibility
+To create an object, PoolObject receives a FactoryMethod from the constructor. The PoolObject also receives ReturnEffect and GetEffect methods, because sometimes you may need more functionality than just SetActive, for example, initialize the object just before receiving it.
+### Example
+In the “ExampleObjectPool” folder you can see how I created concrete object pool for conrete object. On the scene with the same name you can test my ObjectPool, creating objects with click.
