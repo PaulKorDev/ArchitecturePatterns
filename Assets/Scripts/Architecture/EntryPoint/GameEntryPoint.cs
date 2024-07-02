@@ -13,9 +13,11 @@ namespace Assets.Scripts.Architecture.EntryPoint
         public static void AutoStart()
         {
             Application.targetFrameRate = 60;
-            //For mobile game
-            //Screen.sleepTimeout = SleepTimeout.NeverSleep;
 
+#if UNITY_IOS || UNITY_ANDROID || UNITY_WP_8_1
+            //For mobile game
+            Screen.sleepTimeout = SleepTimeout.NeverSleep;
+#endif
             _instance = new GameEntryPoint();
             _instance.RunGame();
         }
