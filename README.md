@@ -6,6 +6,7 @@ Custom design patterns for fast using in own projects
 * [Service Locator](#service-locator)
 * [State Machine](#state-machine)
 * [Object Pool](#object-pool)
+* [Custom Event](#custom-event)
 * [Reactive Property](#reactive-property)
 
 ## Entry point
@@ -35,7 +36,23 @@ To create an object, PoolObject receives a FactoryMethod from the constructor. T
 ### Example
 In the “ExampleObjectPool” folder you can see how I created concrete object pool for conrete object. On the scene with the same name you can test my ObjectPool, creating objects with click.
 
+## Custom Event
+### How it works?
+This works like usual events, but you can set priority when subscribing of listener, and listeners will be called in order of priority.
+### Syntax
+CustomEvent can take from 0 to 4 parameters, if you need more, you can add a new class to CustomEvent.cs
+
+Initialization: CustomEvent<int, string> myEvent = new CustomEvent<int, string>(); 
+
+Subscribe: myEvent.Subscribe(MyMethod, 1);
+
+Unsubsribe: myEvent.Unsubscribe(MyMethod);
+
+Invoke: myEvent.Trigger(intVar1, stringVar2);
+
 ## Reactive Property
 I copied this code from somewhere, but it's better to use UniRx for serious projects.
 ### How it works?
 Create variable with type of reactive class and add listener for created variable.
+### Minuses
+It does not work with reference type variables, because they change "from the inside".
