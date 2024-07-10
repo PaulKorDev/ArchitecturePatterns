@@ -51,8 +51,9 @@ Unsubsribe: myEvent.Unsubscribe(MyMethod);
 Invoke: myEvent.Trigger(intVar1, stringVar2);
 
 ## Reactive Property
-I copied this code from somewhere, but it's better to use UniRx for serious projects.
+I written simple ReactiveProperty, ReactiveList and extension method for convert List to ReactiveList
 ### How it works?
-Create variable with type of reactive class and add listener for created variable.
-### Minuses
-It does not work with reference type variables, because they change "from the inside".
+ReactiveProperty: Create variable with type of PeactiveProperty class and add listener for created variable.
+ReactiveList: ReactiveList<T>  works same like usual List with same methods and properties, but now you can subscribe to OnItemAdded, OnItemRemoved, OnListCleared and OnListChanged
+Extension method: ReactiveList<int> reactList = myUsualList.ToReactiveList();
+
